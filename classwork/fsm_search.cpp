@@ -32,7 +32,6 @@ T input(std::string msg) {
         std::cout << msg << ": ";
     }
     T value;
-    /// TODO: read entire line for string
     std::cin >> value;
 }
 
@@ -52,7 +51,6 @@ void print(T value, std::string msg) {
     }
     std::cout << value << std::endl;;
 }
-
 
 TrMatrix computeTransitionMatrix(std::string pattern) {
     TrMatrix trFunc(pattern.size() + 1, Row(ALFABET_SIZE));
