@@ -8,11 +8,11 @@ For this reason, tha students are advised to either download install Ubuntu imag
 
 After installation the following tools should be installed from the terminal:
 
-```git``` for working with the repo
-```vim``` for editing
-```gcc``` with ```g++``` for compiling
-```gdb``` for debugging
-```cmake``` for build automation
+- ```git``` for working with the repo
+- ```vim``` for editing
+- ```gcc``` with ```g++``` for compiling
+- ```gdb``` for debugging
+- ```cmake``` for build automation
 
 Installation can be performed using [apt command in Ubuntu](https://ubuntu.com/server/docs/package-management).
 
