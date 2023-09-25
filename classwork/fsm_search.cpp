@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+/// TODO: npos
+
 /// type alias
 using StateId = int;
 using StateIds = std::vector<StateId>;
@@ -17,6 +19,7 @@ T input(std::string msg) {
     }
     T value;
     std::cin >> value;
+
     return value;
 }
 
@@ -27,6 +30,7 @@ std::string input(std::string msg) {
     }
     std::string value;
     std::getline(std::cin, value);
+
     return value;
 }
 
@@ -43,8 +47,10 @@ int main() {
     const auto finalState = pattern.size();
     const auto optIndex = fsmFindFirstMatch(trFunc, finalState, text);
     if (optIndex.has_value()) {
-        print(optIndex.value(), "Found at");
-    } else {
+        print(optIndex.value() - pattern.size(), "First symbol position");
+        print(optIndex.value(), "Last symbol position");
+    } 
+    else {
         print("Pattern not found");
     }
 }
@@ -54,11 +60,13 @@ void print(T value, std::string msg) {
     if (!msg.empty()) {
         std::cout << msg << ": ";
     }
-    std::cout << value << std::endl;;
+    std::cout << value << std::endl;
 }
 
-bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1EndIndex, size_t sub2StartIndex) {
-    return s.compare(sub1StartIndex, sub1EndIndex + 1, s, sub2StartIndex);
+bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1EndIndex, size_t sub2StartIndex, size_t sub2EndIndex)
+{
+    int result = s.compare(sub1StartIndex, sub1EndIndex + 1, s, sub2StartIndex, sub2EndIndex - sub2StartIndex + 1);
+    return result == 0;
 }
 
 StateId computeNextState(StateId currStateId, char c, const std::string& pattern) {
@@ -66,19 +74,21 @@ StateId computeNextState(StateId currStateId, char c, const std::string& pattern
     if (c == pattern[currStateId] && currStateId != finalState) {
         return currStateId + 1;
     }
+
+    auto s = pattern;
+    s[currStateId] = c;
+
     for (StateId nextState = currStateId; nextState > 0; --nextState) {
-        const auto nextStateLastChar = pattern[nextState - 1];
-        if (c != nextStateLastChar) {
-            continue;
-        }
         const auto prefixStartIndex = 0;
         const auto prefixEndIndex = nextState - 1;
         const auto suffixEndIndex = currStateId;
-        const auto suffixStartIndex =  currStateId - (prefixEndIndex + 1);
-        if (areSubstringEqual(pattern, prefixStartIndex, prefixEndIndex, suffixStartIndex)) {
+        const auto suffixStartIndex = currStateId - (prefixEndIndex);
+
+        if (areSubstringEqual(s, prefixStartIndex, prefixEndIndex, suffixStartIndex, suffixEndIndex)) {
             return nextState;
         }
     }
+
     return StateId{0};
 }
 
@@ -91,6 +101,7 @@ TrMatrix computeTransitionMatrix(const std::string& pattern) {
             trFunc[stateId][c] = computeNextState(stateId, c, pattern);
         }
     }
+
     return trFunc;
 }
 
@@ -102,5 +113,6 @@ std::optional<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState
             return i;
         }
     }
+
     return std::nullopt;
 }
