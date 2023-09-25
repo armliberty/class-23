@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+/// TODO: npos
+
 /// type alias
 using StateId = int;
 using StateIds = std::vector<StateId>;
