@@ -13,6 +13,7 @@ After installation the following tools should be installed from the terminal:
 - ```gcc``` with ```g++``` for compiling
 - ```gdb``` for debugging
 - ```cmake``` for build automation
+- ```flex```` for lexical analysis
 
 Installation can be performed using [apt command in Ubuntu](https://ubuntu.com/server/docs/package-management).
 
