@@ -107,7 +107,7 @@ TrMatrix computeTransitionMatrix(const std::string& pattern) {
     return trFunc;
 }
 
-//CHanges done here too!!(main changes)
+//CHanges done here too. (main changes)
 std::vector<int> fsmFindEachMatch(const TrMatrix& trMx, StateId finalState, const std::string& text) {
     StateId currState = 0;
     std::vector<int> allMatches;
