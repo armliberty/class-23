@@ -50,7 +50,7 @@ int main() {
     if (optIndexesArray.size() > 0) {
         print(optIndexesArray.size(), "Matches found");
         for(int i = 0; i < optIndexesArray.size(); ++i) {         
-            print(optIndexesArray[i] - pattern.size(), "Match №" + std::to_string(i+1) + " starts at position");
+            print(optIndexesArray[i] - pattern.size() + 1, "Match №" + std::to_string(i+1) + " starts at position");
         }
     } 
     else {
@@ -127,5 +127,5 @@ std::string toLower(std::string inputPattern) {
             c = std::tolower(c);
         }
     }
-    return pattern;
+    return inputPattern;
 }

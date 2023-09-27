@@ -39,13 +39,15 @@ void print(T, std::string = "");
 
 TrMatrix computeTransitionMatrix(const std::string& pattern);
 std::vector<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, const std::string& text);
+std::string toLower(std::string inputPattern);
 
 int main() {
-    const auto pattern = input<std::string>("Input search pattern");
+    const auto pattern = toLower(input<std::string>("Input search pattern"));
     const auto text = input<std::string>("Input text to search");
     const auto trFunc = computeTransitionMatrix(pattern);
     const auto finalState = pattern.size();
     const auto optIndexesArray = fsmFindFirstMatch(trFunc, finalState, text);
+
     if (optIndexesArray.size() > 0) {
         print(optIndexesArray.size(), "Matches found");
         for(int i = 0; i < optIndexesArray.size(); ++i) {         
@@ -99,8 +101,15 @@ TrMatrix computeTransitionMatrix(const std::string& pattern) {
     const auto alfabetSize = std::numeric_limits<char>::max();
     TrMatrix trFunc(stateCount, StateIds(alfabetSize));
     for (StateId stateId = 0; stateId < stateCount; ++stateId) {
+        //Added this part
+        if (pattern[stateId] == '.' && stateId != stateCount - 1) {
+            for (int c = 0; c < alfabetSize; ++c) {
+                trFunc[stateId][c] = stateId + 1;
+            }
+            continue;
+        }
         for (char c = 0; c < alfabetSize; ++c) {
-            trFunc[stateId][c] = computeNextState(stateId, c, pattern);
+            trFunc[stateId][c] = computeNextState(stateId, c >= 'A' && c <= 'Z' ? c + 32 : c, pattern);
         }
     }
 
@@ -118,4 +127,13 @@ std::vector<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, 
     }
 
     return resultVector; 
+}
+
+std::string toLower(std::string inputPattern) {
+     for (char &c : inputPattern) {
+        if (std::isupper(c)) {
+            c = std::tolower(c);
+        }
+    }
+    return inputPattern;
 }
