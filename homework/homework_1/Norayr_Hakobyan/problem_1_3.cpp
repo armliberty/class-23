@@ -6,7 +6,7 @@ std::vector<int> Prime_Factorize(int);
 
 int main() {
   int number;
-  std::cout << "the numbers are: ";
+  std::cout << "the number is: ";
   std::cin >> number;
   std::vector<int> vector;
 
