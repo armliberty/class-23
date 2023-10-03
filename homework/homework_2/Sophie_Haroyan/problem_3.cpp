@@ -74,7 +74,7 @@ bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1E
 
 StateId computeNextState(StateId currStateId, char c, const std::string& pattern) {
     const auto finalState = pattern.size();
-    if (c == pattern[currStateId] && currStateId != finalState) {
+    if ((c == tolower(pattern[currStateId]) || c == toupper(pattern[currStateId])) && currStateId != finalState) {
         return currStateId + 1;
     }
 
@@ -90,6 +90,7 @@ StateId computeNextState(StateId currStateId, char c, const std::string& pattern
         if (areSubstringEqual(s, prefixStartIndex, prefixEndIndex, suffixStartIndex, suffixEndIndex)) {
             return nextState;
         }
+
     }
 
     return StateId{0};
@@ -100,8 +101,15 @@ TrMatrix computeTransitionMatrix(const std::string& pattern) {
     const auto alfabetSize = std::numeric_limits<char>::max();
     TrMatrix trFunc(stateCount, StateIds(alfabetSize));
     for (StateId stateId = 0; stateId < stateCount; ++stateId) {
-        for (char c = 0; c < alfabetSize; ++c) {
-            trFunc[stateId][c] = computeNextState(stateId, c, pattern);
+        if (pattern[stateId] == '.' && stateId != stateCount - 1) {
+            for(int i = 0; i < alfabetSize; ++i) {
+                trFunc[stateId][i] = stateId + 1;
+            }
+        }
+        else {
+            for (char c = 0; c < alfabetSize; ++c) {
+                trFunc[stateId][c] = computeNextState(stateId, c, pattern);
+            }
         }
     }
 
@@ -114,7 +122,7 @@ std::vector<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, 
     
     for (size_t i = 0; i < text.size(); ++i) {
         currState = trMx[currState][text[i]];
-        if (currState == finalState ) {
+        if (currState == finalState) {
             indexPositions.push_back(i);
             currState --;
         }

@@ -74,7 +74,7 @@ bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1E
 
 StateId computeNextState(StateId currStateId, char c, const std::string& pattern) {
     const auto finalState = pattern.size();
-    if (c == pattern[currStateId] && currStateId != finalState) {
+    if ((c == tolower(pattern[currStateId]) || c == toupper(pattern[currStateId])) && currStateId != finalState) {
         return currStateId + 1;
     }
 
@@ -90,6 +90,7 @@ StateId computeNextState(StateId currStateId, char c, const std::string& pattern
         if (areSubstringEqual(s, prefixStartIndex, prefixEndIndex, suffixStartIndex, suffixEndIndex)) {
             return nextState;
         }
+
     }
 
     return StateId{0};
@@ -116,10 +117,9 @@ std::vector<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, 
         currState = trMx[currState][text[i]];
         if (currState == finalState) {
             indexPositions.push_back(i);
+            currState --;
         }
     }
 
     return indexPositions;
 }
-// artash
-// ArtAsH

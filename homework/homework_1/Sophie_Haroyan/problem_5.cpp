@@ -5,7 +5,6 @@
 bool isPrime(int digit);
 std:: vector<int> euclid(int a, int b);
 
-
 int main(){
 
     int a;
@@ -18,7 +17,6 @@ int main(){
     const auto GCDandLCM = euclid(a, b);
     std:: cout << "GCD: " << GCDandLCM[0] << "\nLCM: " << GCDandLCM[1];
 
-  
 return 0;
    
 }
@@ -33,7 +31,6 @@ bool isPrime(int digit) {
             return false;           
         }
     }
-
     return true;
 }
 
@@ -42,6 +39,22 @@ std::vector<int> euclid(int a, int b) {
     int gcd;
     int lcm;
 
+    if (a > b && (a % b == 0)){
+        gcd = b;
+        lcm = a;
+        GCDandLCM.push_back(gcd);
+        GCDandLCM.push_back(lcm);
+        return GCDandLCM;
+    }
+    
+     if (b > a && (b % a == 0)){
+        gcd = a;
+        lcm = b;
+        GCDandLCM.push_back(gcd);
+        GCDandLCM.push_back(lcm);
+        return GCDandLCM;
+    }
+    
     if (a == b){
         gcd = a;
         lcm = a;
@@ -57,51 +70,50 @@ std::vector<int> euclid(int a, int b) {
     }
 
     else if (isPrime(a) && (b % a == 0)){
-         GCDandLCM.push_back(1);
+        GCDandLCM.push_back(b / a);
         GCDandLCM.push_back(b);
        return GCDandLCM;
     }
     else if (isPrime(b) && (a % b == 0)){
-        std:: cout << "gcd not found";
-        lcm = a;
-         GCDandLCM.push_back(1);
+    
+        GCDandLCM.push_back(a / b);
         GCDandLCM.push_back(a);
        return GCDandLCM;
     }
-    int remainder;
-    remainder = 0;
-    do {
+    
+    
+    int remainder = 0;
         int a1=a;
         int b1=b;
         if (a > b) {        
-                while (a1 % b1 != 0 && !isPrime(remainder)) {
-                    remainder = a1 % b1;
-                    a1 = b1;
-                    b1 = remainder;
-                }
-                if(remainder == 0) {
-                    gcd = a1 / b1;
-                    lcm = (a * b)/gcd;
-                    GCDandLCM.push_back(gcd);
-                    GCDandLCM.push_back(lcm);
-                    return GCDandLCM;
-                }                 
-                else {
-                    gcd=1;
-                    lcm = a * b;
-                    GCDandLCM.push_back(gcd);
-                    GCDandLCM.push_back(lcm);
-                    return GCDandLCM;
-                }
+            while (a1 % b1 != 0) {
+                remainder = a1 % b1;
+                a1 = b1;
+                b1 = remainder;
+            }
+            if(a1 % b1 == 0) {
+                gcd = remainder;
+                lcm = (a * b)/gcd;
+                GCDandLCM.push_back(gcd);
+                GCDandLCM.push_back(lcm);
+                return GCDandLCM;
+            }                 
+            else {
+                gcd=1;
+                lcm = a * b;
+                GCDandLCM.push_back(gcd);
+                GCDandLCM.push_back(lcm);
+                return GCDandLCM;
+            }
         }
         else {
-            while (b1 % a1 != 0 && !isPrime(remainder)) {
+            while (b1 % a1 != 0) {
                 remainder = b1 % a1;
                 b1 = a1;
                 a1 = remainder;    
             }
-            if (remainder == 0){
-                gcd = b1 / a1;
+            if (b1 % a1 == 0){
+                gcd = remainder;
                 lcm = (a * b)/gcd;
                 GCDandLCM.push_back(gcd);
                 GCDandLCM.push_back(lcm);
@@ -115,9 +127,5 @@ std::vector<int> euclid(int a, int b) {
                 return GCDandLCM;
             }        
         }
-    }    
-           
-    while (remainder != 0);
-
         return GCDandLCM;
 }
