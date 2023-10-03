@@ -27,8 +27,8 @@ int computeGCD(int a, int b) {
 }
 
 int computeLCM(int a, int b) {
-    int LCM = (a * b) / computeGCD(a,b);
-    return LCM;
+    int lcm = (a * b) / computeGCD(a,b);
+    return lcm;
 }
 
 std::vector<int> primeFactorize(int n) {

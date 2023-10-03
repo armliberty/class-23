@@ -10,17 +10,17 @@ int main() {
     int a,b;
     std::cout << "a = "; std::cin >> a;
     std::cout << "b = "; std::cin >> b;
-    int GCD = computeGCD(a, b); 
-    std::cout << "GCD = " << GCD << std::endl;
-    int LCM = computeLCM(a, b);
-    std::cout << "LCM = " << LCM << std::endl;
+    int gcd = computeGCD(a, b); 
+    std::cout << "GCD = " << gcd << std::endl;
+    int lcm = computeLCM(a, b);
+    std::cout << "LCM = " << lcm << std::endl;
 }
 
 int computeGCD(int a, int b) {
     std::vector<int> a_factorize = primeFactorize(a);
     std::vector<int> b_factorize = primeFactorize(b);
 
-    int GCD = 1, i = 0, j = 0;
+    int gcd = 1, i = 0, j = 0;
 
         while(i < a_factorize.size() && j < b_factorize.size()) {
           if(a_factorize[i] < b_factorize[j])
@@ -28,17 +28,17 @@ int computeGCD(int a, int b) {
           else if(a_factorize[i] > b_factorize[j])
               j++;
           else {
-              GCD *= a_factorize[i]; 
+              gcd *= a_factorize[i]; 
               i++;
               j++;
           }
         }
-    return GCD;
+    return gcd;
 }
 
 int computeLCM (int a, int b) {
-   int LCM = (a * b) / computeGCD(a,b);
-   return LCM;
+   int lcm = (a * b) / computeGCD(a,b);
+   return lcm;
 }
 
 std::vector<int> primeFactorize(int n) {

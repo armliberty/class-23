@@ -14,7 +14,7 @@ double sine(double x,double delta) {
   x = (x * M_PI)/180;
 
  do {
-    x = x - (std::sin(x) - x)/(std::cos(x) - 1);
+    x = x - (std::sin(x) - x*x)/(std::cos(x) - 2*x);
     
     if (std::abs(std::sin(x) - x) < delta)
       break;
