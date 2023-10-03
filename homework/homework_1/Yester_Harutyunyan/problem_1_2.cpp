@@ -16,7 +16,7 @@ int main() {
     const auto x = input<double>("Please input x");
     const auto delta = input<double>("Please input delta");
     std::cout << "sine: " << sine(x, delta) <<std::endl;
-    std::cout<<sin(x)<<std::endl;
+    std::cout<< "sin: " << sin(sine(x, delta))<<std::endl;
 }
 
 double sine(double x, double delta){
