@@ -1,5 +1,5 @@
 #include <iostream>
-using namespace std;
+
 bool isPrime(int n) {
     if (n <= 1) {
         return false; 
@@ -16,11 +16,11 @@ bool isPrime(int n) {
 }
 int main() {
     int num;
-    cin >> num;
+    std::cin >> num;
     if (isPrime(num)) {
-        cout << num << "is prime." << endl;
+        std::cout << num << "is prime." << std::endl;
     } else {
-        cout << num << "is not prime." << endl;
+        std::cout << num << "is not prime." << std::endl;
     }
     return 0;
 }
