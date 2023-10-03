@@ -10,10 +10,10 @@ int main() {
    int a,b;
    std::cout << "a="; std::cin >> a;
    std::cout << "b="; std::cin >> b;
-   int GCD = computeGCD(a, b); 
-   std::cout << "GCD = " << GCD << std::endl;
-   int LCM = computeLCM(a, b);
-   std::cout << "LCM = "<< LCM << std::endl;  
+   int gcd = computeGCD(a, b); 
+   std::cout << "GCD = " << gcd << std::endl;
+   int lcm = computeLCM(a, b);
+   std::cout << "LCM = "<< lcm << std::endl;  
 }
 
 int computeGCD(int a, int b) { 

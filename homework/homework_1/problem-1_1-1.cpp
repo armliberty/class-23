@@ -17,7 +17,7 @@ double cubeRoot(double x, double delta) {
 
     do {
         previousValue = currentValue;
-        currentValue = (2 * (previousValue + x / previousValue * previousValue)/3);
+        currentValue = (2 * previousValue + x / (previousValue * previousValue))/3;
     }while(std::abs(currentValue - previousValue) > delta);
     return currentValue;
 }
