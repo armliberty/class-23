@@ -114,6 +114,7 @@ std::vector<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, 
         currState = trMx[currState][text[i]];
         if (currState == finalState) {
             resultVector.push_back(i);
+            --currState;
         }
     }
 
