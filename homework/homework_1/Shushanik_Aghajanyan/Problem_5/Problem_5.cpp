@@ -13,7 +13,6 @@ int main()
 	std::cout << "compute GCD" << std::endl;
 	Input(a, b);
 	std::cout << "GCD( " << a << "," << b << "); " << computeGCD(a, b) << std::endl;
-	std::cout << "compute LCM" << std::endl;
 	std::cout << "compute GCD::Euclid " << std::endl;
 	do
 	{
