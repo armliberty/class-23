@@ -4,4 +4,4 @@
 
 3. Modify the FSM construction in stirng matching algorithm to recognize '.' wildcard matching any character.
 
-4. Modify the FSM construction in stirng matching algorithm to recognize '?' matching preceding character 1 or 0 times.
+4. **Write the algorithm of the FSM construction for stirng matching recognizing '?' matching preceding character 1 or 0 times.
