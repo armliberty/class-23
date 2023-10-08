@@ -16,6 +16,7 @@
 
 5. Design an algorithm based on the [powerset cardinality proof](https://en.wikipedia.org/wiki/Power_set#Representing_subsets_as_functions) for returning all subsets of a given set, and implement in the following code:
    ```cpp
+   #include <cmath> // std::pow
    #include <iostream>
    #include <string>
    #include <vector>
