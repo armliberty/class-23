@@ -64,7 +64,8 @@ void print(T value, std::string msg) {
 }
 
 bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1EndIndex, size_t sub2StartIndex, size_t sub2EndIndex){
-   return 0 == s.compare(sub1StartIndex, sub1EndIndex + 1, s, sub2StartIndex, sub2EndIndex - sub2StartIndex + 1);    
+   int result = s.compare(sub1StartIndex, sub1EndIndex + 1, s, sub2StartIndex, sub2EndIndex - sub2StartIndex + 1);
+   return result == 0;      
 }
 
 StateId computeNextState(StateId currStateId, char c, const std::string& pattern) {
