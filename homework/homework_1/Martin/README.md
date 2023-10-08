@@ -16,6 +16,6 @@ Homework2 is the combination of 2nd, 3rd and 4th problems:
 
 Homework3 is only the implementation of the 5th problem:
     ```
-    int computeGCD(int a, int b); -> with euclid's method
+    int computeGCD(int a, int b); -> with euclid's method;
     int computeLCM(int a, int b);
     ```
