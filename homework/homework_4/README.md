@@ -42,7 +42,7 @@
    int main() {
        const auto size = input<size_t>("Input the string count");
        const auto stringSet = inputStringSet();
-       print(std::pow(2, stringSet.size() - 1, "Expected powerset cardinality));
+       print(std::pow(2, stringSet.size()) - 1, "Expected powerset cardinality));
        const auto subsets = computeSubsets(stringSet);
        print(subsets.size(), "Computed powerset cardinality");
        std::cout << "Computed powerset: "
