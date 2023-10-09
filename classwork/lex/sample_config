@@ -1,0 +1,9 @@
+logging {
+    category cakdfd-fdff { null; }
+    category cname { null; }
+};
+
+zone "." {
+    type hint;
+    file "/path/to/file"
+};
