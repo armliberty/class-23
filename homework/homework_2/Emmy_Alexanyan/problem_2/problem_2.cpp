@@ -51,7 +51,7 @@ int main() {
     const auto finalState = pattern.size();
     const auto optIndex = fsmFindFirstMatch(trFunc, finalState, text);
     if (optIndex.has_value()) {
-        print(optIndex.value() - pattern.size(), "First symbol position");
+        print(optIndex.value() - pattern.size()+1, "First symbol position");
         print(optIndex.value(), "Last symbol position");
     } 
     else {
