@@ -33,16 +33,7 @@ std::string input(const std::string& msg) {
 template <typename T>
 void print(T, const std::string& msg = "");
 template <typename T>
-void print(const std::vector<T>& v, const std::string& msg = "") {
-    if (!msg.empty()) {
-        std::cout << msg << ": ";
-    }
-    std::cout << "[ ";
-    for (const auto& e : v) {
-        std::cout << e << "; ";
-    }
-    std::cout << "]" << std::endl;
-}
+void print(const std::vector<T>& v, const std::string& msg = "");
 
 std::vector<size_t> findAllMatches(const std::string& pattern, const std::string& text);
 void markFoundIndices(size_t startOffset, const std::vector<size_t>&);
@@ -63,6 +54,19 @@ void print(T value, const std::string& msg) {
     }
     std::cout << value << std::endl;
 }
+
+template <typename T>
+void print(const std::vector<T>& v, const std::string& msg) {
+    if (!msg.empty()) {
+        std::cout << msg << ": ";
+    }
+    std::cout << "[ ";
+    for (const auto& e : v) {
+        std::cout << e << "; ";
+    }
+    std::cout << "]" << std::endl;
+}
+
 
 bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1EndIndex, size_t sub2StartIndex) {
     return 0 == s.compare(sub1StartIndex, sub1EndIndex + 1, s, sub2StartIndex);
