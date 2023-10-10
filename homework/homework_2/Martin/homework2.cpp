@@ -38,23 +38,17 @@ template <typename T>
 void print(T, std::string = "");
 
 TrMatrix computeTransitionMatrix(const std::string& pattern);
-std::optional<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, const std::string& text, size_t j);
+std::optional<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, const std::string& text);
 
 int main() {
-    size_t j=0;
     const auto pattern = input<std::string>("Input search pattern");
     const auto text = input<std::string>("Input text to search");
     const auto trFunc = computeTransitionMatrix(pattern);
     const auto finalState = pattern.size();
-    const auto optIndex = fsmFindFirstMatch(trFunc, finalState, text,j);
+    const auto optIndex = fsmFindFirstMatch(trFunc, finalState, text);
     if (optIndex.has_value()) {
-        j = optIndex.value();
-        while(j <= text.size()){
-        print(j - pattern.size()+1, "First symbol position");
-        print(j, "Last symbol position");
-        const auto optIndex = fsmFindFirstMatch(trFunc, finalState, text,j);
-        j = optIndex.value();
-        }
+        print(optIndex.value() - pattern.size(), "First symbol position");
+        print(optIndex.value(), "Last symbol position");
     } 
     else {
         print("Pattern not found");
@@ -69,15 +63,13 @@ void print(T value, std::string msg) {
     std::cout << value << std::endl;
 }
 
-bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1EndIndex, size_t sub2StartIndex, size_t sub2EndIndex)
-{
-    int result = s.compare(sub1StartIndex, sub1EndIndex + 1, s, sub2StartIndex, sub2EndIndex - sub2StartIndex + 1);
-    return result == 0;
+bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1EndIndex, size_t sub2StartIndex, size_t sub2EndIndex){
+   return 0 == s.compare(sub1StartIndex, sub1EndIndex + 1, s, sub2StartIndex, sub2EndIndex - sub2StartIndex + 1);    
 }
 
 StateId computeNextState(StateId currStateId, char c, const std::string& pattern) {
     const auto finalState = pattern.size();
-    if (c == pattern[currStateId] && currStateId != finalState) {
+    if (c == pattern[currStateId] || currStateId != finalState) {
         return currStateId + 1;
     }
 
@@ -111,12 +103,12 @@ TrMatrix computeTransitionMatrix(const std::string& pattern) {
     return trFunc;
 }
 
-std::optional<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, const std::string& text, size_t j) {
+std::optional<size_t> fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, const std::string& text) {
     StateId currState = 0;
-    for (size_t i = j; i < text.size(); ++i) {
+    for (size_t i = 0; i < text.size(); ++i) {
         currState = trMx[currState][text[i]];
         if (currState == finalState) {
-           return i;
+            return i;
         }
     }
 
