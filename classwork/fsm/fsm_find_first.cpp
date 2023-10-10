@@ -53,8 +53,9 @@ void print(T value, const std::string& msg) {
     std::cout << value << std::endl;
 }
 
-bool areSubstringEqual(const std::string& s, size_t sub1StartIndex, size_t sub1EndIndex, size_t sub2StartIndex) {
-    return 0 == s.compare(sub1StartIndex, sub1EndIndex + 1, s, sub2StartIndex);
+bool areSubstringsEqual(const std::string& s, size_t sub1StartIndex, size_t sub1EndIndex,
+                                                size_t sub2StartIndex, size_t sub2EndIndex) {
+    return 0 == s.compare(sub1StartIndex, sub1EndIndex - sub1StartIndex + 1, s, sub2StartIndex, sub2EndIndex - sub2StartIndex + 1);
 }
 
 StateId computeNextState(StateId currStateId, char c, const std::string& pattern) {
@@ -62,12 +63,12 @@ StateId computeNextState(StateId currStateId, char c, const std::string& pattern
     if (c == pattern[currStateId] && currStateId != finalState) {
         return currStateId + 1;
     }
-    for (StateId nextState = currStateId; nextState > 0; --nextState) {
-        const auto prefixStartIndex = 0;
+    for (auto nextState = currStateId; nextState > 0; --nextState) {
         const auto prefixEndIndex = nextState - 1;
-        const auto suffixEndIndex = currStateId;
-        const auto suffixStartIndex = currStateId - (prefixEndIndex - prefixStartIndex);
-        if (areSubstringEqual(pattern, prefixStartIndex, prefixEndIndex, suffixStartIndex)) {
+        const auto suffixStartIndex = currStateId - prefixEndIndex;
+        const auto suffixEndIndex = currStateId - 1;
+        if (c == pattern[prefixEndIndex] &&
+                (prefixEndIndex == 0 || areSubstringsEqual(pattern, 0, prefixEndIndex - 1, suffixStartIndex, suffixEndIndex))) {
             return nextState;
         }
     }

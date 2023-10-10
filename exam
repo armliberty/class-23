@@ -1,0 +1,3 @@
+
+ Give an NFA that accepts
+the language (a ∪ b)*ab+a(a ∪ b)ab*
