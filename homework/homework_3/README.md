@@ -1,8 +1,8 @@
 1. Write a LEX program that recognizes the following tokens:
     - Keywords: __if__, __else__, __while__, __for__, __int__, __double__
-    - Identifiers: __abc2__, ___23fb__
-    - Integer constants: __42__, __-23__, __+3__, __0__
-    - Floating point constants: __0.2__, __-2.1, +2.1, __.2__, __2.__, __0.__, __.0__; Also in scientific notation: +2e10, -2.1e-10
+    - Identifiers: e.g. __abc2__, ___23fb__
+    - Integer constants: e.g. __42__, __-23__, __+3__, __0__
+    - Floating point constants: e.g. __0.2__, __-2.1, +2.1, __.2__, __2.__, __0.__, __.0__; Also in scientific notation: +2e10, -2.1e-10
     -  Operators: __+__, __-__, __*__, __/__, __%_, __=__, __==__, __<__, __>__, __>=__, __<=__.
     - Delimiters: __(__, __)__, __;__, __{__, __}__
 
