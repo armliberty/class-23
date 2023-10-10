@@ -12,5 +12,5 @@
     1. Write a regular expression for the language of e-mails.
     2. Write it in terms of formal operations: concatenation, union and Kleene star.
     3. Design an ε-NFA recognizing that language.
-    4. Conver the ε-NFA into DFA.
+    4. Convert the ε-NFA into DFA.
     5. Implement the DFA in a C++ program that validates e-mail addresses.
