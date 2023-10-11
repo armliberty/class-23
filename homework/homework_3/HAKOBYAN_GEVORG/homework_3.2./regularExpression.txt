@@ -1,0 +1,20 @@
+Regular expression for the language of emails:
+((a-z) ∪ (A-Z) ∪ (0 - 9)+ ∪ (('-'∪ '_'∪ '.')? ∪ ((a-z) ∪ (A-Z) ∪ (0 - 9))+)*)+ (@) (((a-z) ∪ (A-Z) ∪ (0 - 9))+ ∪ "-" ∪ "." ∪ (a-z) ∪ (A-Z) ∪ (0 - 9)+)+ (.) ∪ ((a-z) ∪ (A-Z))\{2,3};
+
+I searched and found out that a valid email address should contain:
+1:At least one character before @, weather digit, or both lowarcase and uppercase letter, or hyphen, underscore, or dot which then must be followed at least one letter or digit.
+2:@ is compulsory.
+3:After @ it is compulsory to have at least one character- including digits, letters (uppercase and lowercase) those can be followed by hyphen,.(dot) or underscore and after these characters (., _, -)it is again compulsory to have at least one character - letter or digit.
+4:For the last part it is only validated that it must contain at least two characters.
+Here is the link of that page: https://help.xmatters.com/ondemand/trial/valid_email_format.htm 
+
+Lets break into parts to make it clear:
+1:(a-z) ∪ (A-Z) ∪ (0 - 9)+ by this expression I try to say at least one character.(because it has to start with one of those characters). 
+2:('-'∪ '_'∪ '.'){0,1} this means one of those character 0 or at most one time. (--, .. is not valid).
+3:((a-z) ∪ (A-Z) ∪ (0 - 9))+) same this as in 1st.
+4:So 3 and 1 together gives this - (('-'∪ '_'∪ '.'){0,1} ∪ ((a-z) ∪ (A-Z) ∪ (0 - 9))+)*) which means if from the first part ((('-'∪ '_'∪ '.'){0,1}) comes a character then it must be followed by any character from the second part ()((a-z) ∪ (A-Z) ∪ (0 - 9))+) and the all this together is valid for email. From this could be 0 or more times, which is gained by *.
+5: 1 and 4 together at least one time. Gained by + sign.
+6: (@) this one is compulsory.
+7: (((a-z) ∪ (A-Z) ∪ (0 - 9))+ ∪ "-" ∪ "." ∪ (a-z) ∪ (A-Z) ∪ (0 - 9)+)+ look to 4.
+8: (.) this is compulsory.
+9:((a-z) ∪ (A-Z))\{2,3} after . must be letters only at least two and no more than 3 times.
