@@ -1,0 +1,10 @@
+I searched and found out that a valid email address should contain:
+1:The local part must start with digit, or both lowarcase and uppercase letter,which can be followed by hyphen, underscore, or dot, which then must be followed at least one letter or digit.
+2:@ is compulsory.
+3:After @ (the domain) has the identical accept rules as the local part. Must contain at least one alphanumeric character.
+4:For the last part it is only validated that it must contain two or at most 3 letter.
+Here is the link of that page: https://help.xmatters.com/ondemand/trial/valid_email_format.htm 
+
+^([a-zA-Z0-9]+([-_.]?[a-zA-Z0-9]+)*)+@([a-zA-Z0-9]+ + ([-_.]?[a-zA-Z0-9]+)*).[a-zA-z]{2,3}$
+(                  1st             )(2)(     3th                           ) (    4th    )
+    
