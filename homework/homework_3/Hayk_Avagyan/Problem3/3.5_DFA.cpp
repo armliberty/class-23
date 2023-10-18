@@ -5,9 +5,8 @@ std::string input(std::string msg);
 bool isSymbol(char c);
 bool isValidEmail(const std::string email);
 
-
 int main() {
-    const auto email = input("Input an E-mail");
+    const std::string email = input("Input an E-mail");
     if (isValidEmail(email)) 
         std::cout << "Email is valid.\n";
     else 
@@ -15,8 +14,6 @@ int main() {
     
     return 0;
 }
-
-
 
 std::string input(std::string msg) {
     if (!msg.empty()) {
@@ -27,75 +24,55 @@ std::string input(std::string msg) {
     return value;
 }
 
-
 bool isSymbol(char c) {
-    if (c == '_' | c == '.' | c == '-')
-        return true;
-    else 
-    return false;
+    return (c == '_' || c == '.' || c == '-');
 }
 
-
 bool isValidEmail(const std::string email) {
-    const auto stateCount = email.size();
+    const int stateCount = email.size();
     int state = 0;
-    int index = 0;
+    int atIndex = -1;  
+    int dotIndex = -1; 
 
     for (int i = 0; i < stateCount; i++) {
         char c = email[i];
         
-        //First character
         if (i == 0) {
             if (isalpha(c)) {
                 state++;
             } else {
-                state = -1; // Transition to an invalid state
-                return 0;
+                return false;
             }
-        } 
-
-        //Before @
-        else if (index == 0) {
-            if (isalpha(c) | isalnum(c) | isSymbol(c)) 
+        } else if (atIndex == -1) {
+            if (isalpha(c) || isdigit(c) || isSymbol(c)) {
                 state++;
-            else if (c == '@') {
+            } else if (c == '@') {
                 state++;
-                index++;
-            } 
-            else {
-                state = -1; 
-                return 0;
+                atIndex = i;
+            } else {
+                return false;
             }
-        } 
-        
-        //After @, brefore .
-        else if (index == 1) {
-            if (isalpha(c) | c == '-') 
+        } else if (dotIndex == -1) {
+            if (isalpha(c) || c == '-') {
                 state++;
-            else if(email[i] == '.'){
+            } else if (c == '.') {
                 state++;
-                index++; 
+                dotIndex = i;
+            } else {
+                return false;
             }
-            else {
-                state = -1; 
-                return 0;
-            }
-        } 
-        
-        //After .
-        else if (index == 2) {
+        } else {
             if (isalpha(c)) {
                 state++;
-            } 
-            else {
-                state = -1; 
-                return 0;
+            } else {
+                return false;
             }
         }
     }
 
-    if(index == 2 && state != -1)
-        return true;
-    else 
+    if (state < 4 || atIndex == -1 || dotIndex == -1 || dotIndex <= atIndex + 1) {
         return false;
+    }
+
+    return true;
 }
