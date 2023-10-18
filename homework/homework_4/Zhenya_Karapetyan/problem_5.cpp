@@ -33,9 +33,7 @@ int main()
     print(subsets.size(), "Computed powerset cardinality");
     std::cout << "Computed powerset: ";
     for (const auto &s : subsets)
-    {
         print(s);
-    }
 }
 
 void makeSet(std::vector<std::string> &str)
