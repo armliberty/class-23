@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
-#include "string.h"
+#include <string>
 
 bool isPalindrome(const std::string&);
 bool isPalindrome(int);
 
 
-int main(int argc, char const *argv[])
+int main()
 {
     int number;
     std::string text;
@@ -26,10 +26,9 @@ bool isPalindrome(int number){
 
 bool isPalindrome(const std::string& number_elems){
     for (int i = 0; i <= number_elems.length() / 2; ++i) {
-        if ( number_elems[i] != number_elems[number_elems.length() - 1 - i] ) {
+        if ( number_elems[i] != number_elems[ number_elems.length() - 1 - i ] ) {
             return false;
         }
     }
     return true;
 }
-
