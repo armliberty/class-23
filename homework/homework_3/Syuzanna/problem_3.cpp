@@ -15,7 +15,7 @@ int is_alpha(int c)
 
 int is_valid_char(int c)
 {
-    if (is_alpha(c)  c == '_'  (c >= '0' && c <= '9')  c == '-'  c == '.')
+    if (is_alpha(c) || c == '_' || (c >= '0' && c <= '9') || c == '-' || c == '.')
         return (1);
     return (0);
 }
