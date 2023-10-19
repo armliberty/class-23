@@ -6,13 +6,12 @@ exp [eE]
 delimiters [(|)|;|{|}]
 operators [+|-|*|/|%|=|==|<|>|>=|<=]
 
+
 %{
     #include <stdio.h>
 %}
 
-
 %%
-
 {letter}{letter}* {printf("<%s, Keywords>\n", yytext);}
 ({digit}+{letter}+)*|({letter}+{digit}+)* {printf("<%s, Identifier>\n", yytext);}
 {sign}?{digit}* {printf("<%s, Integer constants>\n", yytext);}
