@@ -1,0 +1,7 @@
+letter [a-zA-Z]
+digit [0-9]
+l_and_d {letter}|{digit}
+signs [-_.]
+
+
+({letter}+) U ({signs}U{l_and_d}+)* U {@}({l_and_d}+ U ({signs}U{l_and_d})){.} U ({letter}{letter}|{letter})

@@ -133,4 +133,3 @@ std::vector<size_t> findAllMatches(const std::string& pattern, const std::string
         std::tie(index, currState) = fsmCompute(trMx, currState, finalState, text, index + 1);
     }
     return indices;
-}
