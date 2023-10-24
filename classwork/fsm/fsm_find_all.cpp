@@ -47,6 +47,28 @@ int main() {
     print(matchedIndices, "Matched index list");
 }
 
+void markFoundIndices(size_t startOffset, const std::vector<size_t>& list){
+    size_t lastElement = list[list.size() - 1];
+    size_t i,j,n;
+    // size_t newList = 
+    for(n = 0; n < startOffset; n++){std::cout<<" ";}
+    
+    for(i = 0; i < list.size(); i++){
+        for(j = 0; j < startOffset + lastElement + 1; j++){
+            if(j == list[i]){
+                std::cout<<"^";
+                break;
+            }
+            else{
+                std::cout<<" ";
+            }
+        }
+    }
+    
+    std::cout<<std::endl;
+}
+
+
 template <typename T>
 void print(T value, const std::string& msg) {
     if (!msg.empty()) {
@@ -133,4 +155,3 @@ std::vector<size_t> findAllMatches(const std::string& pattern, const std::string
         std::tie(index, currState) = fsmCompute(trMx, currState, finalState, text, index + 1);
     }
     return indices;
-}
