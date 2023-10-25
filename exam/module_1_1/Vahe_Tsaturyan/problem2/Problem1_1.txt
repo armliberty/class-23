@@ -1,2 +1,0 @@
-Vahe Tsaturyan
-[a-z]?[b-z]*[b]*|[b]*
