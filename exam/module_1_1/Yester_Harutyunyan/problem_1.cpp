@@ -11,7 +11,7 @@ int input(const std::string& msg) {
     return value;
 }
 
-
+int computeOverlap(TimeSig ts1, TimeSig ts2);
 int main() {
 
     int a1 = input("Input first bit");
