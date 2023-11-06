@@ -5,9 +5,10 @@
     1.2. L={a<sup>n</sup> | n is prime}
 
 2. Convert the following grammar to Chomsky Normal Form: 
-    ```math
-    S-> A | A B a | A b A 
-    A -> A a | ε 
-    B -> B b | BC 
+    ```
+    S-> A | A B a | A b A
+    A -> A a | ε    
+    B -> B b | BC
     C -> C B | C A | b B
     ```
+    
