@@ -2,7 +2,7 @@
     - Floating point numbers
     - Multiplication and division: __\<expr\> * \<expr\>__, __\<expr\> / \<expr\>__, __\<expr\> mod \<expr\>__
     - Trigonometric functions and logarithmic: __sin(\<expr\>)__, __cos(\<expr\>)__, __tan__(\<expr\>),
-    __lg(\<expr\>)__, __ln(\<expr\>)__, __lg2(\<expr\>)__, (\<expr\>, \<expr\>)__ (using <math.h> library)
+    __lg(\<expr\>)__, __ln(\<expr\>)__, __lg2(\<expr\>)__, ___log(\<expr\>, \<expr\>)__ (using <math.h> library)
 
     Print error messages in case unaccepted values for the functions.
 
@@ -21,3 +21,4 @@
     short funName(double argName);
     double funName(void);
     ```
+    
