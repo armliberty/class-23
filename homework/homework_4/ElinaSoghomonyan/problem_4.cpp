@@ -37,12 +37,11 @@ bool isPalindrome(const std::string& text) {
 bool isPalindrome(int dig) {
     int rem,count=0;
     std::vector<int> vect;
-    while(dig/10 != 0) {
+    while(dig!= 0) {
         rem=dig%10;
         dig/=10;
         vect.push_back(rem);
     }
-    vect.push_back(dig);
     for(int i=0;i<vect.size()/2;++i) {
         if(vect[i]==vect[vect.size()-1-i]) {
             ++count;
