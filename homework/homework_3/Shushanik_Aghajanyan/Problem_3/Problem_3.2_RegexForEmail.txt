@@ -1,3 +1,0 @@
-Regular expression for the language of e-mails.
-I found it from this page: https://snov.io/knowledgebase/what-is-a-valid-email-address-format/
-(((a-z) ∪ (A-Z) ∪ (0 - 9))+ (('-'∪ '_'∪ '.')? + ((a-z) ∪ (A-Z) ∪ (0 - 9))+)*) "@" ((((a-z) ∪ (A-Z) ∪ (0 - 9)))+ ∪ (("-" ∪ "_" ∪ "." )((a-z) ∪ (A-Z)) ∪ (0 - 9))+)* (.) ((a-z) ∪ (A-Z)){2,};
