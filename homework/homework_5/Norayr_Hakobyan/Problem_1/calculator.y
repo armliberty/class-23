@@ -11,7 +11,7 @@ int yylex();
 int symbols[52];
 void setSymbolValue(char symbol, double value);
 int getSymbolValue(char symbol);
-
+double computeFunction(char* function, double argument) ;
 
 
 %}
