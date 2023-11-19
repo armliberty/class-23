@@ -1,14 +1,24 @@
-1. Using pumping lemma for CFGs prove that the following languages are not context-free:
+1. Update the grammar of calculator in yacc and lex to support the following features:
+    - Floating point numbers
+    - Multiplication and division: __\<expr\> * \<expr\>__, __\<expr\> / \<expr\>__, __\<expr\> mod \<expr\>__
+    - Trigonometric functions and logarithmic: __sin(\<expr\>)__, __cos(\<expr\>)__, __tan(\<expr\>)__,
+    __lg(\<expr\>)__, __ln(\<expr\>)__, __lg2(\<expr\>)__, ___log(\<expr\>, \<expr\>)__ (using ```<math.h>``` library)
 
-    1.1. L={a<sup>n</sup>b<sup>n</sup>c<sup>m</sup> | n≤m}
+    Print error messages in case unaccepted values for the functions.
 
-    1.2. L={a<sup>n</sup> | n is prime}
+2. Write CFGs for [prefix (Polish)](https://en.wikipedia.org/wiki/Polish_notation) and [postfix (reverse Polish)](https://en.wikipedia.org/wiki/Reverse_Polish_notation) notations.
 
-2. Convert the following grammar to Chomsky Normal Form: 
-    ```
-    S-> A | A B a | A b A
-    A -> A a | ε    
-    B -> B b | BC
-    C -> C B | C A | b B
+3. Write a CFG for L={x#y | x,y∈{0,1}* ∧ x≠y<sup>R</sup> } with Σ={0,1}.
+
+4. Write a non-ambiguous CFG for L={x#y | x,y∈{a,b}* ∧ y<sup>R</sup> is prefix of x}.
+
+5. Write a CFG for for L={a<sup>n</sup>ww<sup>R</sup>a<sup>n</sup> | n≥0 ∧ w∈{a,b}*}
+
+6. Design a CFG for function prototypes in C with simple scalar built-in types. E.g.:
+    ```c
+    void funName(int arg1name, double arg2name);
+    int funName();
+    short funName(double argName);
+    double funName(void);
     ```
     
