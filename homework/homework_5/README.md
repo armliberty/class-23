@@ -21,4 +21,3 @@
     short funName(double argName);
     double funName(void);
     ```
-    
