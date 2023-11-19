@@ -1,0 +1,11 @@
+A valid email address has four parts:
+    Recipient name
+    @ symbol
+    Domain name
+    Top-level domain
+
+https://knowledge.validity.com/hc/en-us/articles/220560587-What-are-the-rules-for-email-address-syntax-
+
+
+([a-zA-Z0-9]+([-_.]?[a-zA-Z0-9]+)*)+@([a-zA-Z0-9]+ + ([-_.]?[a-zA-Z0-9]+)*).[a-zA-z]{2,3}
+(                  1st            )(2)(     3th                           ) (    4th    )

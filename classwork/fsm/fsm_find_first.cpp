@@ -96,4 +96,3 @@ size_t fsmFindFirstMatch(const TrMatrix& trMx, StateId finalState, const std::st
         }
     }
     return std::string::npos;
-}
