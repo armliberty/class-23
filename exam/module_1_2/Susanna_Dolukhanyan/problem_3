@@ -1,0 +1,52 @@
+#include <iostream>
+#include <stack>
+#include <cctype>
+
+bool IsOperator(char c) {
+    return c == '+' || c == '-' || c == '*' || c == '/';
+}
+
+int GetPrecedence(char op) {
+    return op == '*' || op == '/' ? 2 : (op == '+' || op == '-' ? 1 : 0);
+}
+
+std::string ConvertInfixToPrefix(const std::string& infixStr) {
+    std::stack<char> operators;
+    std::string result;
+
+    auto isHigherPrecedence = [](char op1, char op2) {
+        return GetPrecedence(op1) > GetPrecedence(op2);
+    };
+
+    for (int i = infixStr.size() - 1; i >= 0; --i) {
+        char ch = infixStr[i];
+
+        if (std::isalnum(ch)) {
+            result = ch + result;
+        } else if (IsOperator(ch)) {
+            while (!operators.empty() && isHigherPrecedence(operators.top(), ch)) {
+                result = operators.top() + result;
+                operators.pop();
+            }
+            operators.push(ch);
+        } else if (ch == ')' || ch == '(') {
+            operators.push(ch);
+        }
+    }
+
+    while (!operators.empty()) {
+        result = operators.top() + result;
+        operators.pop();
+    }
+
+    return result;
+}
+
+int main() {
+    std::string infixExpression = "a + b * (c - d) / e";
+    std::string prefixExpression = ConvertInfixToPrefix(infixExpression);
+    std::cout << "Infix Expression: " << infixExpression << std::endl;
+    std::cout << "Prefix Expression: " << prefixExpression << std::endl;
+
+    return 0;
+}
