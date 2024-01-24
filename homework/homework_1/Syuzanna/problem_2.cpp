@@ -5,7 +5,7 @@ int main()
     int dig;
     do {
         std::cout<<"dig:";
-        std::cin>>dig;
+        std::cin>>dig;        
     }
     while(dig<=1);
     bool res=isPrime(dig);
@@ -19,7 +19,7 @@ int main()
 bool isPrime(int dig)
 {
     bool res=true;
-    for(int i=2;i<dig;++i)
+    for(int i=2;i<dig/2;++i)
     {
         if (dig%i==0)
         {

@@ -15,5 +15,5 @@ if|else|while|for|int|double                     printf("Keyword: %s", yytext);
 %% 
 
 int main(void) { 
-    yylex(); 
+    yylex();
 }

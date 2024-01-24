@@ -15,7 +15,7 @@ int is_alpha(int c)
 
 int is_valid_char(int c)
 {
-    if (is_alpha(c)  c == '_'  (c >= '0' && c <= '9')  c == '-'  c == '.')
+    if (is_alpha(c) || c == '_' || (c >= '0' && c <= '9') || c == '-' || c == '.')
         return (1);
     return (0);
 }
@@ -31,7 +31,7 @@ bool check(std::string& str)
         if (str[i] == '@')
             while (str[++i] && is_alpha(str[i]) && str[i] != '.');
         if (str[i] == '.')
-            if (str[i + 1] && str[i + 2] && str[i + 3] && is_alpha(str[i + 1]) && is_alpha(str[i + 2]) && is_alpha(str[i + 3]))
+             if (str[i + 1] && str[i + 2] && str[i + 3] && is_alpha(str[i + 1]) && is_alpha(str[i + 2]) && is_alpha(str[i + 3]))
                 return (1);
     }
     return (0);

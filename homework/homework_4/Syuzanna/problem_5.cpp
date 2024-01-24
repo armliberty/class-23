@@ -3,34 +3,42 @@
    #include <string>
    #include <vector>
 
-    template <typename T>
-    T input(const std::string& msg) {
-        if (!msg.empty()) {
-            std::cout << msg << ": ";
-        }
-    T size;
-    while(size<1)
-    std::cin >> size;
-    return size;
-    }
-    template <>
-    std::string input(const std::string& msg) {
-        if (!msg.empty()) {
-            std::cout << msg << ": ";
-        }
+
+template <typename T>
+T input(const std::string& msg) {
+    if (!msg.empty()) 
+        std::cout << msg << ": ";
+    
+    T value;
+    std::cin >> value;
+    return value;
+}
+
+template <>
+std::string input(const std::string& msg) {
+    if (!msg.empty()) 
+        std::cout << msg << ": ";
+    
     std::string value;
     std::getline(std::cin, value);
     return value;
-    }
-    template <>
-    std::vector<std::string> input(size){
-        std::vector<std::string> vector(size);
-        for(int i=0; i<size; ++i){
-            vector[i]=input <std::string>("Input string");
-            return std::vector[i];
-        }    
-    }
+}
 
+template <>
+std::vector<std::string> input(const std::string& msg) {
+    const auto size = input<size_t>("Input the string count");
+    if (!msg.empty()) 
+        std::cout << msg << ": ";
+
+    std::vector<std::string> str(size);
+    std::string input;
+
+    for (int i = 0; i < size; ++i) {
+        std::cin >> input;
+        str[i] = input;
+    }
+    return str;
+}
     
     template <typename T>
     void print(const T&, const std::string& msg = "");
@@ -39,16 +47,18 @@
     void makeSet(std::vector<std::string>&);
     std::vector<std::vector<std::string>> computeSubsets(const std::vector<std::string>);
 
-    std::vector<std::string> inputStringSet(auto size) {
-        std::vector<std::string> strings(size);
-        strings = input<std::vector<std::string>>("Input strings");
-        makeSet(strings);
-        return strings;
-    }
+   std::vector<std::string> inputStringSet() {
+    auto strings = input<std::vector<std::string>>("Input strings");
+    //std::vector<std::string> StringSet;
+    makeSet(strings);
+    for (int i=0; i < strings.size();i++ )
+    std::cout<<strings[i];
+    return strings;
+}
    
    int main() {
-       const auto size = input<size_t>("Input the string count");
-       const auto stringSet = inputStringSet(size);
+       const auto stringSet = inputStringSet();
+       //std::cout<<std::endl<<stringSet.size()<<std::endl;
        print (std::pow(2, stringSet.size()) - 1, "Expected powerset cardinality");
        const auto subsets = computeSubsets(stringSet);
        print(subsets.size(), "Computed powerset cardinality");
@@ -61,34 +71,60 @@
   
 
  template <typename T>
-void print(const T& value, const std::string& msg) {
-    if (!msg.empty()) {
+void print(const T &value, const std::string& msg) {
+    if (!msg.empty()) 
         std::cout << msg << ": ";
-    }
+    
     std::cout << value << std::endl;
 }
 
 
-void print(const std::vector<std::string>& subsets, const std::string& msg = ""){
-    if (!msg.empty()) {
+void print(const std::vector<std::string>& str, const std::string& msg) {
+    if (!msg.empty()) 
         std::cout << msg << ": ";
-    }
-    for(int i=0;i<substes.size();++i)
-        std::cout<<subsets[i]<<"  "<<std::endl;
+    
+    std::cout << "{";
+    
+    for (int i = 0; i < str.size(); i++)
+        std::cout << str[i];
+    
+    std::cout << "}" << std::endl;
 }
 
 
-
-
 void makeSet(std::vector<std::string>& stringSet){
+    std::vector<std::string> New;
     for (int i = 0; i < stringSet.size(); ++i) {
-        for (int j = i + 1; j < stringSet.size(); ++j) {
-           if (stringSet[i] == stringSet[j]) {
-               stringSet.erase(stringSet.begin()+j);
-           }
-        }
-    }    
- 
+        for (int j = i + 1; j < stringSet.size(); ++j) 
+            if (stringSet[i] == stringSet[j]) 
+                New.push_back(stringSet[i]);
+    }            
+    for (int i = 0; i < stringSet.size(); ++i)            
+    for(int k=0;k<New.size();++k)  
+            if(New[k] !=stringSet[i])
+                 New.push_back(stringSet[i]); 
+    
+    std::cout<<std::endl;  
+    for(int i=0; i<New.size();++i)
+          std::cout<<New[i]<<std::endl;
+    //std::cout<<std::endl<<New.size()<<std::endl;
+    //std::cout<<std::endl;      
+    /*for(int i=0; i<New.size();++i)
+        stringSet[i]=New[i];
+    for (int i = 0; i < stringSet.size(); ++i)    
+    std::cout<<stringSet[i]<<std::endl;
+    
+    */
+   std::cout<<std::endl;
+   stringSet=New;
+   for (int i = 0; i < stringSet.size(); ++i){    
+    std::cout<<stringSet[i]<<std::endl;
+    std::cout<<std::endl;} 
+    std::cout<<std::endl; 
+
+    //std::cout<<std::endl<<stringSet.size()<<std::endl;
+         
+     
 }
 
 void add1(std::vector<short> & Binary){
@@ -100,6 +136,9 @@ void add1(std::vector<short> & Binary){
                 Binary[Binary.size()-1]=0;
                 h++;
                 Binary[Binary.size()-h]+1;
+                std::cout<<std::endl;
+                for(int i=0;i<Binary.size();++i)
+                std::cout<<Binary[i];
             }   
         }
     }
@@ -124,7 +163,7 @@ std::vector<std::vector<std::string>> computeSubsets(const std::vector<std::stri
     int colums = stringSet.size();
     std::vector<std::vector<std::string>> subsets(rows, std::vector<std::string>(colums));
     std::vector<short> Binary(stringSet.size());
-    for(int i=0; i<Binary.size(); ++i)
+    for(int i=0; i<stringSet.size()+1; ++i)
         Binary[i]=0;
     void add1(std::vector<short> & Binary);
     while(!areAllSet(Binary)){
